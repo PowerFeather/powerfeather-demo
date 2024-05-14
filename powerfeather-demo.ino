@@ -148,7 +148,7 @@ void setUpUI()
   ESPUI.sliderContinuous = false;
 
   String clearLabelStyle = "background-color: unset; width: 100%;";
-  String largeLabelStyle = "width: 48%; .3rem; margin-right: .3rem; font-size: 40px";
+  String largeLabelStyle = "width: 48%; .3rem; margin-right: .3rem; font-size: 35px";
   String smallLabelStyle = "background-color: unset; width: 48%;";
 
   auto batteryInfoGroup = batteryVoltageLabel = ESPUI.addControl(Label, "Battery Information", batteryVoltageString, Dark);
@@ -192,8 +192,8 @@ void setUpUI()
   batteryTemperatureLabel = ESPUI.addControl(Label, "", batteryTemperatureString, Dark, batteryTempControlGroup);
   ESPUI.setElementStyle(ESPUI.addControl(Label, "", "Enable", None, batteryTempControlGroup), smallLabelStyle);
   ESPUI.setElementStyle(ESPUI.addControl(Label, "", "Temperature", None, batteryTempControlGroup), smallLabelStyle);
-  ESPUI.setElementStyle(batteryTemperatureEnableSwitcher, "30%; margin-right: 30%");
-  ESPUI.setElementStyle(batteryTemperatureLabel, "width: 48%; .3rem; margin-right: .3rem; font-size: 30px");
+  ESPUI.setElementStyle(batteryTemperatureEnableSwitcher, "margin-left: 14%; margin-right: 0%");
+  ESPUI.setElementStyle(batteryTemperatureLabel, "width: 40%; margin-left: 21%; font-size: 30px");
 
   auto output3V3Group = output3V3HeaderSwitcher = ESPUI.addControl(Switcher, "3.3 V Outputs", "", Dark, Control::noParent, output3V3HeaderCallback);
   output3V3SQTSwitcher = ESPUI.addControl(Switcher, "", "", Dark, output3V3Group, output3V3SQTCallback);
@@ -201,8 +201,8 @@ void setUpUI()
 
   ESPUI.setElementStyle(ESPUI.addControl(Label, "", "3V3 Enable", None, output3V3Group), smallLabelStyle);
   ESPUI.setElementStyle(ESPUI.addControl(Label, "", "STEMMA QT Enable", None, output3V3Group), smallLabelStyle);
-  ESPUI.setElementStyle(output3V3HeaderSwitcher, "30%; margin-right: 30%");
-  ESPUI.setElementStyle(output3V3SQTSwitcher, "30%; margin-right: 30%");
+  ESPUI.setElementStyle(output3V3HeaderSwitcher, "margin-right: 20%");
+  ESPUI.setElementStyle(output3V3SQTSwitcher, "margin-left: 17%");
 
   mppVoltageSlider = ESPUI.addControl(Slider, "Max Power Point", "4600", Dark, Control::noParent, mppVoltageCallback);
   ESPUI.addControl(Min, "", "4600", None, mppVoltageSlider);
