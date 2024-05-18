@@ -116,13 +116,14 @@ void mppVoltageCallback(Control *sender, int type)
 void enterShipModeCallback(Control *sender, int type)
 {
   generalCallback(sender, type);
+  Board.enableBatteryFuelGauge(false);
   Board.enterShipMode();
 }
 
 void enterDeepSleepCallback(Control *sender, int type)
 {
   generalCallback(sender, type);
-  esp_sleep_enable_timer_wakeup(5 * 1000000);
+  Board.enableBatteryFuelGauge(false);
   esp_deep_sleep_start();
 }
 
@@ -246,6 +247,7 @@ void setup()
   Board.setBatteryChargingMaxCurrent(50);
   Board.setSupplyMaintainVoltage(4600);
   Board.enableBatteryTempSense(false);
+  Board.enableBatteryFuelGauge(true);
 
   startWifi();
   WiFi.setSleep(false);
@@ -314,11 +316,30 @@ void loop()
     memset(batteryTimeLeftString, 0, sizeof(batteryTimeLeftString));
     if (res == Result::Ok)
     {
-      sprintf(batteryTimeLeftString, "%.2f h", value4 / 60.0f);
+      snprintf(batteryTimeLeftString, sizeof(batteryTimeLeftString), "%.2f h", value4 / 60.0f);
     }
     else
     {
-      memcpy(batteryTimeLeftString, "...", sizeof(batteryTimeLeftString));
+      static int dots = 0;
+      const char *dotStr = nullptr;
+      switch(dots % 4)
+      {
+        case 1:
+          dotStr = ".";
+          break;
+        case 2:
+          dotStr = "..";
+          break;
+        case 3:
+          dotStr = "...";
+          break;
+        case 0:
+        default:
+          dotStr = " ";
+          break;
+      }
+      snprintf(batteryTimeLeftString, sizeof(batteryTimeLeftString), dotStr);
+      dots++;
     }
 
     value5 = 0.0f;
