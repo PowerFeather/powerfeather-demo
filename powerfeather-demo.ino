@@ -273,7 +273,7 @@ void loop()
     uint16_t value1 = 0;
     int16_t value2 = 0;
     uint8_t value3 = 0;
-    int32_t value4 = 0;
+    int value4 = 0;
     float value5 = 0.0f;
 
     value1 = 0;
