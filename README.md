@@ -9,3 +9,6 @@ The following libraries are required:
 - ESPUI
 - ESPAsyncWebServer
 - PowerFeather-SDK
+
+> [!TIP]
+>  For the time being, it is also recommended to use the latest arduino-esp32 v2.x, due to some compatibility issues of ESPAsyncWebServer with v3.x.
